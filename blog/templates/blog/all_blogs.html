@@ -1,0 +1,24 @@
+
+{% extends 'portfolio/base.html' %}
+{% block content %}
+<br>
+<h2 style="color:gray;"> You have written {{blogs.count}} blog{{ blogs.count|pluralize }} </h2><br>
+
+{% for blog in blogs %}
+
+<section style="width: 400px;height: 300px;float:left;margin:10px; padding:10px; border:1px solid;border-style: ridge;">
+
+  <table>
+    <tbody><tr><td>
+      <h4 style="color:red;">{{blog.title}}</h4>
+      <p>{{blog.description|truncatechars:200}} </p>
+      <a href="{% url 'blog:detail' blog.id %}" style="color:red;">Read more >></a>
+    </td></tr></tbody>
+    <tfoot><tr style="border-top:1px solid;border-style: ridge;"><td>
+        <small>{{ blog.date| date:'F jS Y' }}</small>
+      </td></tr></tfoot>
+    </table>
+
+</section>
+{% endfor %}
+{% endblock %}
